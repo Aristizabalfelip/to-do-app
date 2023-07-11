@@ -72,6 +72,7 @@ function Form() {
                 }
             </div>
             < ToDoList list={list} />
+           < Error /> 
         </>
     )
 }
