@@ -17,15 +17,8 @@ function Form() {
 
     }
     const handleSubmit = (event) => {
-        event.preventDefault();
-        setData(prev => {
-            return {
-                ...prev,
-                [event.target.name]: event.target.value
-            }
-        })
 
-        setList()
+        
      
         console.log(data);
         console.log(list);
