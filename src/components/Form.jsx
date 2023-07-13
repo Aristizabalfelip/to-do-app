@@ -9,37 +9,27 @@ function Form() {
     const [tag, setTag] = useState(['all'])
     const [memory, setMemory] = useState([])
     const [change, setChange] = useState(0)
-    const [selecTag, setSelectTag] = useState('')
+
     const cant = memory.map(tags => tags.tag)
-    console.log(cant);
-    const bolean = cant.includes(selecTag)
+   
 
-    console.log(bolean);
-
-    if (0) {
-        setTag((prev) => {
+    const deleteRepeated =(array) => {
+        return array.filter((elemento, indice) => {
+          return array.indexOf(elemento) === indice;
+        });
         
-            if (bolean) {
-                return prev.filter(tags => tags !== tag)
-            } else {
-                return prev
-            }
-        })
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      }
+      
+      useEffect(()=> {
+        console.log(cant.length);
+        if (cant.length === 0) {
+            console.log('hola');
+            setTag(['all'])
+        } else {
+            setTag(deleteRepeated(cant))
+        }
+       
+      },[memory])
 
     const handleChange = (event) => {
         setData(prev => {
@@ -53,6 +43,7 @@ function Form() {
     const handleSubmit = (event) => {
         let genId = uuidv4()
         event.preventDefault();
+
         setList([...list, { ...data, id: genId }])
 
         if (event.target[4].name === 'tag') {
@@ -114,8 +105,6 @@ function Form() {
                 setChange = {setChange}
                 change = {change}
                 cant = {cant}
-                setSelectTag = {setSelectTag}
-
                 />
 
         </>

@@ -1,7 +1,7 @@
 import React from 'react'
 import ToDo from './ToDo'
 
-function ToDoList({ list, setList,sTag,memory,setMemory,setStateDone,change,setChange,cant,setSelectTag}) {
+function ToDoList({ list, setList,sTag,memory,setMemory,setStateDone,change,setChange,cant,setSelectTag, noRepeated}) {
   return (
     <div style={{display:'flex',gap:'20px'}}>
       {
@@ -14,14 +14,7 @@ function ToDoList({ list, setList,sTag,memory,setMemory,setStateDone,change,setC
             deadline={tasks.deadline}
             tag={tasks.tag}
             setList={setList}
-            sTag={sTag}
-            memory={memory}
             setMemory ={setMemory}
-            setStateDone= {setStateDone}
-            change = {change}
-            setChange = {setChange}
-            cant={cant}
-            setSelectTag = {setSelectTag}
           />
         })
       }

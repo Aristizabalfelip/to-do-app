@@ -1,8 +1,7 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
-import DeleteTag from './DeleteTag'
+import React, { useState } from 'react'
 
-function ToDo({ name, id, priority, deadline, tag, setList, sTag, memory, setMemory,
-    setChange, change,cant,setSelectTag}) {
+
+function ToDo({ name, id, priority, deadline, tag, setList, setMemory}) {
 
     const [bolTexCrossed, setbolTexCrossed] = useState(false)
     const [stateDone, setStateDone] = useState(false)
@@ -16,64 +15,12 @@ function ToDo({ name, id, priority, deadline, tag, setList, sTag, memory, setMem
         setList((prev) => {
             return prev.filter(taks => taks.id !== id)
         })
-        // setChange(prev => prev += 1)
-
-        setSelectTag(tag)
+        
     }
-
-
-
 
     const handleClickDone = () => {
         setStateDone(prev => !prev)
     }
-
-
-    useEffect(() => {
-       
-
-
-        if (0) {
-            sTag((prev) => {
-                const cant = memory.map(tags => tags.tag)
-            
-                if (!cant.includes(tag)) {
-                    return prev.filter(tags => tags !== tag)
-                } else {
-                    return prev
-                }
-            })
-        }
-     
-           }, [change])
-
-
-
-
-
-
-
-
-
-    // if (cant.includes(tag)) {
-    //     console.log('si entra');
-    //     return prev
-
-    // } else {
-    //     return prev.filter(tags => tags !== tag)
-    // }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     const colorPriority = (color) => {
@@ -119,23 +66,4 @@ function ToDo({ name, id, priority, deadline, tag, setList, sTag, memory, setMem
 
 export default ToDo
 
-  // sTag((prev) => {
-
-        //     setTimeout(() => {
-
-        //         const cant = memory.map(tags => tags.tag)
-        //         console.log(cant);
-        //         console.log(tag);
-        //         console.log(cant.includes('hola'));
-        //         console.log(cant.includes(tag));
-        //         if (cant.includes(tag)) {
-        //             return prev
-        //             console.log('Si entra');
-        //         } else {
-        //             return prev.filter(tags => tags !== tag)
-        //         }
-
-
-        //     }, 1000)
-        //     return prev.filter(tags => tags !== tag)
-        // })
+  

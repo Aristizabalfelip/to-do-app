@@ -7,10 +7,7 @@ function TagsMenu({ tag , setList,memory}) {
        return tag === 'all' ? memory  : memory.filter(tasks=> tasks.tag === tag)
   } )
 
-
-
   }
-
   return (
     <button onClick={handleClick}>#{tag}</button>
   )
