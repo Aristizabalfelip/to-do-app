@@ -8,7 +8,38 @@ function Form() {
     const [list, setList] = useState([])
     const [tag, setTag] = useState(['all'])
     const [memory, setMemory] = useState([])
-    const [stateDone, setStateDone] = useState(false)
+    const [change, setChange] = useState(0)
+    const [selecTag, setSelectTag] = useState('')
+    const cant = memory.map(tags => tags.tag)
+    console.log(cant);
+    const bolean = cant.includes(selecTag)
+
+    console.log(bolean);
+
+    if (0) {
+        setTag((prev) => {
+        
+            if (bolean) {
+                return prev.filter(tags => tags !== tag)
+            } else {
+                return prev
+            }
+        })
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     const handleChange = (event) => {
         setData(prev => {
@@ -22,7 +53,7 @@ function Form() {
     const handleSubmit = (event) => {
         let genId = uuidv4()
         event.preventDefault();
-        setList([...list, { ...data, id: genId, done: stateDone }])
+        setList([...list, { ...data, id: genId }])
 
         if (event.target[4].name === 'tag') {
             setTag(prev => {
@@ -33,11 +64,11 @@ function Form() {
                 }
             })
         }
-      setMemory([...memory, { ...data, id: genId, done: stateDone }])
+      setMemory([...memory, { ...data, id: genId }])
     }
      useEffect(()=>{
         
-     },[stateDone])
+     },[])
 
 
 
@@ -79,7 +110,12 @@ function Form() {
                 sTag = {setTag}
                 memory={memory}
                 setMemory ={setMemory}
-                setStateDone = {setStateDone}
+                // setStateDone = {setStateDone}
+                setChange = {setChange}
+                change = {change}
+                cant = {cant}
+                setSelectTag = {setSelectTag}
+
                 />
 
         </>

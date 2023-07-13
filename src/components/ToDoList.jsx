@@ -1,7 +1,7 @@
 import React from 'react'
 import ToDo from './ToDo'
 
-function ToDoList({ list, setList,sTag,memory,setMemory,setStateDone}) {
+function ToDoList({ list, setList,sTag,memory,setMemory,setStateDone,change,setChange,cant,setSelectTag}) {
   return (
     <div style={{display:'flex',gap:'20px'}}>
       {
@@ -18,6 +18,10 @@ function ToDoList({ list, setList,sTag,memory,setMemory,setStateDone}) {
             memory={memory}
             setMemory ={setMemory}
             setStateDone= {setStateDone}
+            change = {change}
+            setChange = {setChange}
+            cant={cant}
+            setSelectTag = {setSelectTag}
           />
         })
       }
