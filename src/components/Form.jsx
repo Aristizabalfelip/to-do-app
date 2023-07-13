@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ToDoList from './ToDoList'
 import TagsMenu from './TagsMenu'
 import { v4 as uuidv4 } from 'uuid';
@@ -6,7 +6,9 @@ import { v4 as uuidv4 } from 'uuid';
 function Form() {
     const [data, setData] = useState({})
     const [list, setList] = useState([])
-    const [tag, setTag] = useState(['#all'])
+    const [tag, setTag] = useState(['all'])
+    const [memory, setMemory] = useState([])
+    const [stateDone, setStateDone] = useState(false)
 
     const handleChange = (event) => {
         setData(prev => {
@@ -18,19 +20,24 @@ function Form() {
     }
 
     const handleSubmit = (event) => {
+        let genId = uuidv4()
         event.preventDefault();
-        setList([...list, { ...data, id: uuidv4() }])
+        setList([...list, { ...data, id: genId, done: stateDone }])
 
         if (event.target[4].name === 'tag') {
             setTag(prev => {
-                if (!prev.includes(`#${event.target[4].value}`)) {
-                    return [...prev, `#${event.target[4].value}`]
+                if (!prev.includes(`${event.target[4].value}`)) {
+                    return [...prev, `${event.target[4].value}`]
                 } else {
                     return [...prev]
                 }
             })
         }
+      setMemory([...memory, { ...data, id: genId, done: stateDone }])
     }
+     useEffect(()=>{
+        
+     },[stateDone])
 
 
 
@@ -60,14 +67,20 @@ function Form() {
                     tag?.map((tag) => {
                         return < TagsMenu 
                         tag={tag} 
-                        setList={setList}/>
+                        setList={setList}
+                        memory={memory}
+                        />
                     })
                 }
             </div>
             < ToDoList
                 list={list}
                 setList={setList}
-                sTag = {setTag} />
+                sTag = {setTag}
+                memory={memory}
+                setMemory ={setMemory}
+                setStateDone = {setStateDone}
+                />
 
         </>
     )

@@ -1,15 +1,18 @@
 import React from 'react'
 
-function TagsMenu({ tag , setList }) {
+function TagsMenu({ tag , setList,memory}) {
 
-  const handlClick = () => {
-    setList((prev) => {
-      return prev.filter(tasks=> tasks.tag === tag.replace('#', ""))
+  const handleClick = () => {
+    setList(() => {
+       return tag === 'all' ? memory  : memory.filter(tasks=> tasks.tag === tag)
   } )
+
+
+
   }
 
   return (
-    <button onClick={handlClick}>{tag}</button>
+    <button onClick={handleClick}>#{tag}</button>
   )
 }
 
