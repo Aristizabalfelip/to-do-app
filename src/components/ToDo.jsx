@@ -9,7 +9,6 @@ function ToDo({ name, id, priority, deadline, tag, setList,
         setMemory((prev) => {
             return prev.filter(taks => taks.id !== id)
         })
-
         setList((prev) => {
             return prev.filter(taks => taks.id !== id)
         })
