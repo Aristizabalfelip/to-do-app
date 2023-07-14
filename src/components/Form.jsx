@@ -10,26 +10,25 @@ function Form() {
     const [memory, setMemory] = useState([])
     const [change, setChange] = useState(0)
 
-    const cant = memory.map(tags => tags.tag)
-   
+  
 
-    const deleteRepeated =(array) => {
-        return array.filter((elemento, indice) => {
-          return array.indexOf(elemento) === indice;
+    const deleteRepeated = (array) => {
+        return array.filter((element, index) => {
+            return array.indexOf(element) === index;
         });
-        
-      }
-      
-      useEffect(()=> {
-        console.log(cant.length);
-        if (cant.length === 0) {
-            console.log('hola');
-            setTag(['all'])
-        } else {
-            setTag(deleteRepeated(cant))
-        }
+
+    }
+
        
-      },[memory])
+
+
+    useEffect(() => {
+        setTag(prev => {
+            const arrayTags = memory.map(todo => todo.tag)
+            return ['all', ...deleteRepeated(arrayTags)]
+        })
+
+    }, [memory])
 
     const handleChange = (event) => {
         setData(prev => {
@@ -44,7 +43,7 @@ function Form() {
         let genId = uuidv4()
         event.preventDefault();
 
-        setList([...list, { ...data, id: genId }])
+        setList([...list, { ...data, id: genId, done: false  }])
 
         if (event.target[4].name === 'tag') {
             setTag(prev => {
@@ -55,11 +54,10 @@ function Form() {
                 }
             })
         }
-      setMemory([...memory, { ...data, id: genId }])
+        setMemory([...memory, { ...data, id: genId, done: false }])
     }
-     useEffect(()=>{
-        
-     },[])
+ 
+
 
 
 
@@ -87,10 +85,10 @@ function Form() {
             <div>
                 {
                     tag?.map((tag) => {
-                        return < TagsMenu 
-                        tag={tag} 
-                        setList={setList}
-                        memory={memory}
+                        return < TagsMenu
+                            tag={tag}
+                            setList={setList}
+                            memory={memory}
                         />
                     })
                 }
@@ -98,14 +96,14 @@ function Form() {
             < ToDoList
                 list={list}
                 setList={setList}
-                sTag = {setTag}
+                sTag={setTag}
                 memory={memory}
-                setMemory ={setMemory}
-                // setStateDone = {setStateDone}
-                setChange = {setChange}
-                change = {change}
-                cant = {cant}
-                />
+                setMemory={setMemory}
+                setChange={setChange}
+                change={change}
+               
+               
+            />
 
         </>
     )

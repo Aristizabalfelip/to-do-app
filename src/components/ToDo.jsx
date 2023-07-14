@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
 
 
-function ToDo({ name, id, priority, deadline, tag, setList, setMemory}) {
-
-    const [bolTexCrossed, setbolTexCrossed] = useState(false)
-    const [stateDone, setStateDone] = useState(false)
+function ToDo({ name, id, priority, deadline, tag, setList,
+     setMemory,memory,done}) {
 
     const handleClickDelete = () => {
 
@@ -17,12 +15,15 @@ function ToDo({ name, id, priority, deadline, tag, setList, setMemory}) {
         })
         
     }
-
     const handleClickDone = () => {
-        setStateDone(prev => !prev)
+       const index = memory.findIndex(taks=> taks.id === id)
+       const nuevoArray = [...memory]
+       nuevoArray[index].done = !(nuevoArray[index].done)
+       setMemory(nuevoArray)
+       setList(nuevoArray)
     }
 
-
+    
     const colorPriority = (color) => {
         if (color === 'color') {
 
@@ -48,19 +49,21 @@ function ToDo({ name, id, priority, deadline, tag, setList, setMemory}) {
 
 
     return (
+        <>
         <div style={{ backgroundColor: colorPriority('color') }}>
             <div>
-                <h2 style={{ textDecoration: bolTexCrossed ? 'line-through' : 'none', display: 'flex', alignItems: 'center' }}>{name} <p>{colorPriority('emoji')}</p> </h2>
-                <p style={{ textDecoration: bolTexCrossed ? 'line-through' : 'none' }}>{`#${tag}`}</p>
-                <p style={{ textDecoration: bolTexCrossed ? 'line-through' : 'none' }}>Priority: {priority}</p>
-                <p style={{ textDecoration: bolTexCrossed ? 'line-through' : 'none' }}>Finish date: {deadline}</p>
+                <h2 style={{ textDecoration: done ? 'line-through' : 'none', display: 'flex', alignItems: 'center' }}>{name} <p>{colorPriority('emoji')}</p> </h2>
+                <p style={{ textDecoration: done ? 'line-through' : 'none' }}>{`#${tag}`}</p>
+                <p style={{ textDecoration: done ? 'line-through' : 'none' }}>Priority: {priority}</p>
+                <p style={{ textDecoration: done ? 'line-through' : 'none' }}>Finish date: {deadline}</p>
             </div>
             <div>
-                <button onClick={handleClickDelete}>Delete</button>
-                <button onClick={handleClickDone}>Done</button>
+                <button onClick={handleClickDelete}>🗑️</button>
+          
+                <button onClick={handleClickDone}>{done ? '🔄️' :'✅'}</button>
             </div>
-
         </div>
+        </>
     )
 }
 
