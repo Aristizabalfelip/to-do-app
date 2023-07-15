@@ -16,7 +16,7 @@ function ToDoList({ list, setList, setMemory, memory }) {
 
   return (
     <>
-      <div style={{ display: 'flex', gap: '20px' }}>
+      <div className="flex flex-col">
         <section className="flex gap-10">
           <button onClick={handleAscen}>ascendente</button>
           <button onClick={handleDescen}>descendente</button>

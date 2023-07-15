@@ -82,7 +82,7 @@ function Form() {
                 </form>
             </div>
             <hr />
-            <div>
+            <div className='flex justify-center'>
                 {
                     tag?.map((tag) => {
                         return < TagsMenu
