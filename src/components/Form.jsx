@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import arrow from '../assets/arrow.png'
 import ToDoList from './ToDoList'
 import TagsMenu from './TagsMenu'
 import { v4 as uuidv4 } from 'uuid';
@@ -10,26 +11,20 @@ function Form() {
     const [memory, setMemory] = useState([])
     const [change, setChange] = useState(0)
 
-    const cant = memory.map(tags => tags.tag)
-   
-
-    const deleteRepeated =(array) => {
-        return array.filter((elemento, indice) => {
-          return array.indexOf(elemento) === indice;
+    const deleteRepeated = (array) => {
+        return array.filter((element, index) => {
+            return array.indexOf(element) === index;
         });
-        
-      }
-      
-      useEffect(()=> {
-        console.log(cant.length);
-        if (cant.length === 0) {
-            console.log('hola');
-            setTag(['all'])
-        } else {
-            setTag(deleteRepeated(cant))
-        }
-       
-      },[memory])
+
+    }
+
+    useEffect(() => {
+        setTag(prev => {
+            const arrayTags = memory.map(todo => todo.tag)
+            return ['all', ...deleteRepeated(arrayTags)]
+        })
+
+    }, [memory])
 
     const handleChange = (event) => {
         setData(prev => {
@@ -44,28 +39,56 @@ function Form() {
         let genId = uuidv4()
         event.preventDefault();
 
-        setList([...list, { ...data, id: genId }])
+        setList([...list, { ...data, id: genId, done: false }])
 
-        if (event.target[4].name === 'tag') {
-            setTag(prev => {
-                if (!prev.includes(`${event.target[4].value}`)) {
-                    return [...prev, `${event.target[4].value}`]
-                } else {
-                    return [...prev]
-                }
-            })
-        }
-      setMemory([...memory, { ...data, id: genId }])
+        setTag(prev => {
+            if (!prev.includes(`${event.target.tag.value}`)) {
+                return [...prev, `${event.target.tag.value}`]
+            } else {
+                return [...prev]
+            }
+        })
+
+        setMemory([...memory, { ...data, id: genId, done: false }])
     }
-     useEffect(()=>{
-        
-     },[])
+
+    window.addEventListener('scroll', function () {
+        const animationEti = document.querySelector('#animado');
+        const position1 = animationEti.getBoundingClientRect().top;
+        const sizePant = window.innerHeight;
+        if (position1 < sizePant) {
+            animationEti.style.animation = 'mover 1s ease-out'
+        }
+
+    })
+
+
+
+
+
+
+
+
+
+
 
 
 
     return (
         <>
-            <div style={{ display: 'flex', gap: '20px' }} >
+            <div class='bgImg flex justify-center'>
+                <div  className='flex justify-center w-4/5 h-14 mt-60 p-10 bg-white bg-opacity-80 items-center triangle-border'>
+                    <h1 className='flex justify-center font-sans text-4xl font-extrabold'>MemoMind</h1>
+                    
+                </div>
+
+            </div>
+            <div className="flex flex-col justify-center mt-10 items-center gap-5">
+                <p className='p-10 rounded-lg bg-black bg-opacity-30 p-4'>Te ayudamos a organizar la distribución de tu tiempo para que  siempre estés al día</p>
+                <img className='arrow' src={arrow} alt="" />
+            </div>
+
+            <div className="flex gap-20" id='animado'>
                 <form onSubmit={handleSubmit} action="" style={{ display: 'flex', gap: '20px', width: '90%' }}>
                     <section style={{ display: 'flex', gap: '20px', flexDirection: 'column', width: '60%' }}>
                         <label htmlFor="">Insert todo: </label>
@@ -84,13 +107,13 @@ function Form() {
                 </form>
             </div>
             <hr />
-            <div>
+            <div className='flex bg-red-300'>
                 {
                     tag?.map((tag) => {
-                        return < TagsMenu 
-                        tag={tag} 
-                        setList={setList}
-                        memory={memory}
+                        return < TagsMenu
+                            tag={tag}
+                            setList={setList}
+                            memory={memory}
                         />
                     })
                 }
@@ -98,14 +121,12 @@ function Form() {
             < ToDoList
                 list={list}
                 setList={setList}
-                sTag = {setTag}
+                sTag={setTag}
                 memory={memory}
-                setMemory ={setMemory}
-                // setStateDone = {setStateDone}
-                setChange = {setChange}
-                change = {change}
-                cant = {cant}
-                />
+                setMemory={setMemory}
+                setChange={setChange}
+                change={change}
+            />
 
         </>
     )
