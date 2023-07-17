@@ -17,12 +17,12 @@ function ToDoList({ list, setList, setMemory, memory }) {
   return (
     <>
 
-      <div className="flex flex-col">
-        <section className="flex gap-10">
-          <button onClick={handleAscen}>ascendente</button>
-          <button onClick={handleDescen}>descendente</button>
+      <div className="flex flex-col gap-20">
+        <section className="flex gap-10 justify-end mr-10">
+          <button className='rounded-lg bg-black bg-opacity-10 p-2' onClick={handleAscen}>ascendente</button>
+          <button className='rounded-lg bg-black bg-opacity-10 p-2' onClick={handleDescen}>descendente</button>
         </section>
-        <section>
+        <section className="flex gap-20" >
           {
             list?.map((tasks) => {
               return < ToDo

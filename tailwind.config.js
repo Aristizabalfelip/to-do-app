@@ -4,7 +4,9 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      'madera-oscura': '#5d4037',
+    },
   },
   plugins: [],
 }

@@ -54,10 +54,10 @@ function Form() {
 
     window.addEventListener('scroll', function () {
         const animationEti = document.querySelector('#animado');
-        const position1 = animationEti.getBoundingClientRect().top;
+        const position1 = animationEti.getBoundingClientRect().top/2;
         const sizePant = window.innerHeight;
         if (position1 < sizePant) {
-            animationEti.style.animation = 'mover 1s ease-out'
+            animationEti.style.animation = 'mover 2s ease-out'
         }
 
     })
@@ -84,30 +84,30 @@ function Form() {
 
             </div>
             <div className="flex flex-col justify-center mt-10 items-center gap-5">
-                <p className='p-10 rounded-lg bg-black bg-opacity-30 p-4'>Te ayudamos a organizar la distribución de tu tiempo para que  siempre estés al día</p>
+                <p className='p-10 rounded-lg bg-black bg-opacity-10 p-4'>Te ayudamos a organizar la distribución de tu tiempo para que  siempre estés al día</p>
                 <img className='arrow' src={arrow} alt="" />
             </div>
 
-            <div className="flex gap-20" id='animado'>
-                <form onSubmit={handleSubmit} action="" style={{ display: 'flex', gap: '20px', width: '90%' }}>
+            <div className="flex gap-20 justify-center" id='animado'>
+                <form className='flex  justify-center border-2 border-brown-500 ... p-10 bg-neutral-500' onSubmit={handleSubmit} action="" style={{ display: 'flex', gap: '70px', width: '90%' }}>
                     <section style={{ display: 'flex', gap: '20px', flexDirection: 'column', width: '60%' }}>
                         <label htmlFor="">Insert todo: </label>
-                        <input type="text" name='name' onChange={handleChange} value={data.name} />
-                        <input type="submit" value='Send' />
+                        <input className='border-2 border-brown-500 ... rounded-lg' type="text" name='name' onChange={handleChange} value={data.name} />
+                        <input className='rounded-lg bg-black bg-opacity-10 w-16 p-2' type="submit" value='Send' />
                     </section>
                     <section style={{ display: 'flex', gap: '20px', flexDirection: 'column' }}>
-                        <article><label htmlFor="">Priority:</label> <select name="priority" onChange={handleChange}>
+                        <article><label htmlFor="">Priority:</label> <select className= 'border-2 border-brown-500 ... p-1 rounded-lg' name="priority" onChange={handleChange}>
                             <option value="Low" >Low</option>
                             <option value="Medium">Medium</option>
                             <option value="Hight">Hight</option>
                         </select></article>
-                        <article><label htmlFor="">Deadline:</label><input type="date" name="deadline" onChange={handleChange} /></article>
-                        <article><label htmlFor="">Tag:</label><input type="text" name='tag' onChange={handleChange} /></article>
+                        <article className='flex gap-3'><label htmlFor="">Deadline:</label><input className='border-2 border-brown-500 ... p-1 rounded-lg' type="date" name="deadline" onChange={handleChange} /></article>
+                        <article className='flex gap-3'><label htmlFor="">Tag:</label><input className= 'border-2 border-brown-500 ... p-1 rounded-lg'type="text" name='tag' onChange={handleChange} /></article>
                     </section>
-                </form>
+                </form> 
             </div>
             <hr />
-            <div className='flex bg-red-300'>
+            <div className='flex gap-5 justify-center'>
                 {
                     tag?.map((tag) => {
                         return < TagsMenu

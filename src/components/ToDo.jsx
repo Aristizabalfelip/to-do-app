@@ -31,7 +31,7 @@ function ToDo({ name, id, priority, deadline, tag, setList,
             } if (priority === 'Medium') {
                 return '#fdfd96'
             } else {
-                return '#de4c8a'
+                return '#a12312'
             }
         } else {
             if (priority === 'Low') {
@@ -48,7 +48,7 @@ function ToDo({ name, id, priority, deadline, tag, setList,
 
     return (
         <>
-        <div style={{ backgroundColor: colorPriority('color') }}>
+        <div className="p-5 flex rounded-lg gap-5" style={{ backgroundColor: colorPriority('color') }}>
             <div>
                 <h2 style={{ textDecoration: done ? 'line-through' : 'none', display: 'flex', alignItems: 'center' }}>{name} <p>{colorPriority('emoji')}</p> </h2>
                 <p style={{ textDecoration: done ? 'line-through' : 'none' }}>{`#${tag}`}</p>

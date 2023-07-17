@@ -3,7 +3,7 @@ import Form from './components/Form';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App flex flex-col gap-10">
       < Form/>
     </div>
   );
