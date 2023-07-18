@@ -79,7 +79,6 @@ function Form() {
             <div class='bgImg flex justify-center'>
                 <div  className='flex justify-center w-4/5 h-14 mt-60 p-10 bg-white bg-opacity-80 items-center triangle-border'>
                     <h1 className='flex justify-center font-sans text-4xl font-extrabold'>MemoMind</h1>
-                    
                 </div>
 
             </div>
@@ -92,7 +91,7 @@ function Form() {
                 <form className='flex  justify-center border-2 border-brown-500 ... p-10 bg-neutral-500' onSubmit={handleSubmit} action="" style={{ display: 'flex', gap: '70px', width: '90%' }}>
                     <section style={{ display: 'flex', gap: '20px', flexDirection: 'column', width: '60%' }}>
                         <label htmlFor="">Insert todo: </label>
-                        <input className='border-2 border-brown-500 ... rounded-lg' type="text" name='name' onChange={handleChange} value={data.name} />
+                        <input className='border-2 border-brown-500 ... rounded-lg p-2' type="text" name='name' onChange={handleChange} value={data.name} />
                         <input className='rounded-lg bg-black bg-opacity-10 w-16 p-2' type="submit" value='Send' />
                     </section>
                     <section style={{ display: 'flex', gap: '20px', flexDirection: 'column' }}>

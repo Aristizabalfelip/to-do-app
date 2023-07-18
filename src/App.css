@@ -29,3 +29,14 @@
     height: 30px;
     width: 30px;
   }
+
+  @keyframes blinkAni {
+    0% { opacity: 1; transform: scale(1.2);  } /* 0 segundos (visible) */
+    50% { opacity: 0.5; transform: scale(1);} /* 0.5 segundos (invisible) */
+    100% { opacity: 1; transform: scale(1.2); } /* 1 segundo (visible) */
+  }
+  
+  /* Aplicar la animación al elemento que desees */
+  .blink {
+    animation: blinkAni 2s infinite; /* La animación dura 1 segundo y se repite infinitamente */
+  }

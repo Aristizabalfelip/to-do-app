@@ -1,7 +1,10 @@
 
 
+
 function ToDo({ name, id, priority, deadline, tag, setList,
-     setMemory,memory,done}) {
+     setMemory,memory,done,stop}) {
+
+        
 
     const handleClickDelete = () => {
 
@@ -20,12 +23,18 @@ function ToDo({ name, id, priority, deadline, tag, setList,
        setMemory(nuevoArray)
        setList(nuevoArray)
     }
+    const blinckFunt = (priority) => {
+        if (priority === 'Hight' && stop === true) {
+            return "p-5 flex rounded-lg gap-5 blink"
+        }else {
+            return  "p-5 flex rounded-lg gap-5"
+        }
+    }
+    console.log(stop);
 
     
     const colorPriority = (color) => {
         if (color === 'color') {
-
-
             if (priority === 'Low') {
                 return '#779ecb'
             } if (priority === 'Medium') {
@@ -42,15 +51,14 @@ function ToDo({ name, id, priority, deadline, tag, setList,
                 return '😱'
             }
         }
-
     }
-
-
+   
     return (
         <>
-        <div className="p-5 flex rounded-lg gap-5" style={{ backgroundColor: colorPriority('color') }}>
+
+        <div className={blinckFunt(priority)} style={{ backgroundColor: colorPriority('color') }}>
             <div>
-                <h2 style={{ textDecoration: done ? 'line-through' : 'none', display: 'flex', alignItems: 'center' }}>{name} <p>{colorPriority('emoji')}</p> </h2>
+                <h2 className="text-2xl" style={{ textDecoration: done ? 'line-through' : 'none', display: 'flex', alignItems: 'center' }}>{name} <p>{colorPriority('emoji')}</p> </h2>
                 <p style={{ textDecoration: done ? 'line-through' : 'none' }}>{`#${tag}`}</p>
                 <p style={{ textDecoration: done ? 'line-through' : 'none' }}>Priority: {priority}</p>
                 <p style={{ textDecoration: done ? 'line-through' : 'none' }}>Finish date: {deadline}</p>
@@ -59,6 +67,7 @@ function ToDo({ name, id, priority, deadline, tag, setList,
                 <button onClick={handleClickDelete}>🗑️</button>
           
                 <button onClick={handleClickDone}>{done ? '🔄️' :'✅'}</button>
+                
             </div>
         </div>
         </>
